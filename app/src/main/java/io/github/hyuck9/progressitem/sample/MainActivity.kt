@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,16 +33,24 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ProgressItem(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
-                            .clip(RoundedCornerShape(10.dp))
-                            .background(Color(0xfff9f2ff))
-                        ,
-                        brush = Brush.horizontalGradient(listOf(Color(0xff86f7fa), Color(0xff9b86fa))),
-                        percent = 60f,
-                        content = @Composable {
+                    Column(
+                        modifier = Modifier.fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        ProgressItem(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
+                                .clip(RoundedCornerShape(10.dp))
+                                .background(Color(0xfff9f2ff)),
+                            brush = Brush.horizontalGradient(
+                                listOf(
+                                    Color(0xff86f7fa),
+                                    Color(0xff9b86fa)
+                                )
+                            ),
+                            percent = 60f
+                        ) {
                             Text(
                                 text = "테스트 입니다",
                                 fontSize = 12.sp,
@@ -50,7 +58,16 @@ class MainActivity : ComponentActivity() {
                                 color = Color.White
                             )
                         }
-                    )
+
+                        Row() {
+                            Button(onClick = { /*TODO*/ }) {
+                                Text("-")
+                            }
+                            Button(onClick = { /*TODO*/ }) {
+                                Text("+")
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -79,8 +96,7 @@ fun ProgressItemPreview() {
                 .fillMaxWidth()
                 .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color(0xfff9f2ff))
-            ,
+                .background(Color(0xfff9f2ff)),
             brush = Brush.horizontalGradient(listOf(Color(0xff86f7fa), Color(0xff9b86fa))),
             percent = 60f,
             content = @Composable {
