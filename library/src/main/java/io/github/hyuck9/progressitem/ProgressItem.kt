@@ -1,5 +1,8 @@
 package io.github.hyuck9.progressitem
 
+import androidx.compose.animation.core.EaseOutQuad
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -54,7 +57,10 @@ fun ProgressItem(
         modifier = modifier,
         contentAlignment = Alignment.CenterStart
     ) {
-        val progressWidth = (maxWidth * percent / 100)
+        val progressWidth = animateDpAsState(
+            targetValue = maxWidth * percent / 100,
+            animationSpec = tween(easing = EaseOutQuad)
+        )
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -62,7 +68,7 @@ fun ProgressItem(
         ) {
             Box(
                 modifier = progressModifier
-                    .width(width = progressWidth)
+                    .width(width = progressWidth.value)
                     .fillMaxHeight()
             )
             content()
