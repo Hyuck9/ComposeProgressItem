@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import io.github.hyuck9.progressitem.ProgressItem
 import io.github.hyuck9.progressitem.sample.ui.view.component.SampleControl
+import kotlin.math.roundToInt
 
 @Composable
 fun SampleScreen(
@@ -32,6 +33,7 @@ fun SampleScreen(
     ) {
         ProgressItem(
             modifier = Modifier
+                .padding(vertical = 16.dp)
                 .fillMaxWidth()
                 .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
@@ -42,7 +44,7 @@ fun SampleScreen(
                     Color(0xff9b86fa)
                 )
             ),
-            percent = progress
+            percent = progress,
         ) {
             Column(
                 modifier = Modifier
@@ -62,9 +64,67 @@ fun SampleScreen(
                 )
             }
         }
+
+        ProgressItem(
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .fillMaxWidth()
+                .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
+                .clip(RoundedCornerShape(10.dp))
+                .background(Color(0xfff9f2ff)),
+            color = Color.Red.copy(0.5f),
+            percent = progress,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                Text(
+                    text = "테스트 입니다",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "테스트 입니다 zzzzzz",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray
+                )
+            }
+        }
+
+        ProgressItem(
+            modifier = Modifier
+                .padding(vertical = 16.dp)
+                .fillMaxWidth()
+                .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
+                .clip(RoundedCornerShape(10.dp))
+                .background(Color(0xfff9f2ff)),
+            progressModifier = Modifier.background(Color.Green.copy(0.5f)),
+            percent = progress,
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                Text(
+                    text = "테스트 입니다",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(
+                    text = "테스트 입니다 zzzzzz",
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Gray
+                )
+            }
+        }
+
         
-        
-        Spacer(modifier = Modifier.height(2.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         SampleControl("Progress Slider") {
             Slider(
@@ -81,7 +141,7 @@ fun SampleScreen(
                 Text("-")
             }
 
-            Text(text = "$progress")
+            Text(text = "${progress.roundToInt()}")
 
             Button(onClick = { if (progress < 100) progress++ }) {
                 Text("+")
