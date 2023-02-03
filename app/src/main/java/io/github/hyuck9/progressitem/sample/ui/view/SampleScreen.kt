@@ -1,6 +1,10 @@
 package io.github.hyuck9.progressitem.sample.ui.view
 
+import android.util.Log
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -19,6 +23,7 @@ import io.github.hyuck9.progressitem.ProgressItem
 import io.github.hyuck9.progressitem.sample.ui.view.component.SampleControl
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun SampleScreen(
     modifier: Modifier = Modifier
@@ -37,7 +42,12 @@ fun SampleScreen(
                 .fillMaxWidth()
                 .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
-                .background(Color(0xfff9f2ff)),
+                .background(Color(0xfff9f2ff))
+                .combinedClickable(
+                    onClick = { Log.i("TEST", "onClick!") },
+                    onLongClick = { Log.i("TEST", "onLongClick!") },
+                    onDoubleClick = { Log.i("TEST", "onDoubleClick!") }
+                ),
             brush = Brush.horizontalGradient(
                 listOf(
                     Color(0xff86f7fa),
@@ -97,6 +107,7 @@ fun SampleScreen(
         ProgressItem(
             modifier = Modifier
                 .padding(vertical = 16.dp)
+                .clickable { Log.i("TEST", "onClick!") }
                 .fillMaxWidth()
                 .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
                 .clip(RoundedCornerShape(10.dp))
