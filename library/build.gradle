@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+group='com.github.Hyuck9'
+
 android {
     namespace 'io.github.hyuck9.progressitem'
     compileSdk 33
