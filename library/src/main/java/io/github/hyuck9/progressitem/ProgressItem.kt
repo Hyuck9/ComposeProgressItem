@@ -4,6 +4,7 @@ import androidx.compose.animation.core.EaseOutQuad
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,13 +20,15 @@ fun ProgressItem(
     brush: Brush,
     shape: Shape = RectangleShape,
     alpha: Float = 1.0f,
-    percent: Float,
+    percent: Float = 0f,
+    onClick: () -> Unit = {  },
     content: @Composable () -> Unit
 ) {
     ProgressItem(
         modifier = modifier,
         progressModifier = Modifier.background(brush, shape, alpha),
         percent = percent,
+        onClick = onClick,
         content = content
     )
 }
@@ -35,13 +38,15 @@ fun ProgressItem(
     modifier: Modifier = Modifier,
     color: Color,
     shape: Shape = RectangleShape,
-    percent: Float,
+    percent: Float = 0f,
+    onClick: () -> Unit = {  },
     content: @Composable () -> Unit
 ) {
     ProgressItem(
         modifier = modifier,
         progressModifier = Modifier.background(color, shape),
         percent = percent,
+        onClick = onClick,
         content = content
     )
 }
@@ -50,11 +55,13 @@ fun ProgressItem(
 fun ProgressItem(
     modifier: Modifier = Modifier,
     progressModifier: Modifier = Modifier,
-    percent: Float,
+    percent: Float = 0f,
+    onClick: () -> Unit = {  },
     content: @Composable () -> Unit
 ) {
     BoxWithConstraints(
-        modifier = modifier,
+        modifier = modifier
+            .clickable { onClick() },
         contentAlignment = Alignment.CenterStart
     ) {
         val progressWidth = animateDpAsState(
