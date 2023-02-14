@@ -23,8 +23,7 @@ ProgressItem(
         .shadow(elevation = 3.dp, shape = RoundedCornerShape(10.dp))
         .clip(RoundedCornerShape(10.dp))
         .background(Color(0xfff9f2ff)),
-    brush = Brush.horizontalGradient(listOf(Color(0xff86f7fa), Color(0xff9b86fa))   // progress foreground. [color or brush]
-    ),
+    brush = Brush.horizontalGradient(listOf(Color(0xff86f7fa), Color(0xff9b86fa))), // progress foreground. [color or brush]
     percent = 60f,  // progress percent
 ) {
     // Your UI Area
